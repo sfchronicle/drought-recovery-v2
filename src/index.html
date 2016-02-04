@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= json.project.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="css/slider.css">
+    <%= t.include("partials/_head.html") %>
+  </head>
+  <body ng-app="drought">
+
+    <responsive-child>
+      <div ng-controller="DroughtController">
+        <div class="drought-container">
+
+        <div class="title">When will the drought be over?</div>
+        <div class="subtitle">You decide!</div>
+        <div class="chatter">This is some chatter about how there are a lot of different factors and there are a lot of different experts and everyone disagrees about when will the drought be over, but it is a very interesting question so we thought we'd let you investigate for yourself what it would take.</div>
+
+        <div class="thin-div">
+          <div class="center">Where are we now?</div>
+        </div>
+        <div class="spacing_hack"></div>
+        <div class="current-situation">I am not sure if we want more text here or maybe we want to move the text from above to be in this category. Anyway, we'll figure this out.</div>
+        <div class="reset-button" ng-click="reset()">Current status</div>
+
+        <div class="thin-div">
+          <div class="center">Explore yourself:</div>
+        </div>
+        <div class="spacing_hack"></div>
+        <div class="head">Choose a city or the state of California:</div>
+        <select class="select-class"
+                ng-model="selectedCity"
+                ng-change=reset()
+                ng-options="row.id as row.city for row in rainData">
+        </select>
+        <div class="head">How much rainfall will there be in that region through the end of 2016?</div>
+          <div class="sliderExample"><a name="ex3"></a>
+            <strong>Slider - start value 14</strong>
+            <div ui-slider min="0" max="20" ng-model="demoVals.sliderExample3"></div>
+            <input type="text" ng-model="demoVals.sliderExample3" />
+        </div>
+          <div class="rain-slider">
+            <div ng-repeat="item in rain_list" class="cell count-{{item}}" ng-class="{active: activeValue == item}" ng-click="setActive(item)"></div>
+          </div>
+          <div class="axis-label">
+            <div class="rain-min">0 in/mo<i class="fa fa-long-arrow-right"></i></div>
+            <div class="rain-max"><i class="fa fa-long-arrow-left"></i>30 in/mo</div>
+          </div>
+          <div class="rain-text">
+            <div class="rain-inches", value={{activeInches}}>{{activeInches}}</div>
+             inches of rain per month through the end of the year translates into
+            <div class="rain-percent", value={{activePercent*100}}>{{activePercent*100}}</div>
+             % of normal.
+           </div>
+
+        <div class="head">How much snow will there be statewide by the end of 2016?</div>
+          <div class="snow-slider">
+            <div ng-repeat="snow_item in snow_list" class="cell count-{{snow_item}}" ng-class="{active: activeSnowValue == snow_item}" ng-click="setSnowActive(snow_item)"></div>
+          </div>
+          <div class="axis-label">
+            <div class="snow-min">10 in<i class="fa fa-long-arrow-right"></i></div>
+            <div class="snow-max"><i class="fa fa-long-arrow-left"></i>40 in</div>
+          </div>
+          <div class="snow-text">
+            <div class="snow-inches", value={{activeSnowInches}}>{{activeSnowInches}}</div>
+             inches of snow through the end of the year translates into
+            <div class="snow-percent", value={{activeSnowPercent*100}}>{{activeSnowPercent*100}}</div>
+             % of normal.
+           </div>
+
+        <div class="answer">
+          <div class="thin-div">
+            <div class="center long">SO... Are we out of the drought?</div>
+          </div>
+          <div class="spacing_hack"></div>
+          <div class="color-text no" ng-class="{active: droughtValue == 1}">No!</div>
+          <div class="color-text maybe" ng-class="{active: droughtValue == 2}">Maybe!</div>
+          <div class="color-text yes" ng-class="{active: droughtValue == 3}">Yes!</div>
+          <div class="answer-text">This is some text where we explain about how we have done the computations and how weather people decided about certain percentiles determining that these percentiles mean this or that.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="credits">
+      Reporting by <span class="credit-name">Kurtis Alexander</span> &bull; Web development by <span class="credit-name">Emma O'Neill</span>
+    </div>
+
+
+    <footer>
+      <a class="logo" href="http://www.sfchronicle.com">
+        <img src="./assets/sf_logo_white.png">
+      </a>
+    </footer>
+
+    </responsive-child>
+
+    <script>
+      var rainData = <%= JSON.stringify(json.Drought_rainfall) %>
+      var snowData = <%= JSON.stringify(json.Drought_snow) %>
+    </script>
+
+
+    <script src="app.js" async></script>
+    <%= t.include("partials/_foot.html") %>
+    <%= t.include("partials/_helloSFC.html") %>
+  </body>
+</html>

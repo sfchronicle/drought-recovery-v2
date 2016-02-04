@@ -1,0 +1,201 @@
+@import "sfchronicle";
+@import "fonts";
+
+@import "sfchronicle";
+@import "fonts";
+@import "flexbox";
+
+@other: #9F9FBF;
+@red: #A10D2D;
+@orange: #FF9933;
+@yellow: #DED337;
+
+@cellWidth: calc(100% / @columns ~" + .5px");
+@cellHeight: calc(100% / @rows ~" + .5px");
+@rows: (15 - 1.5) * 2;
+@columns: 30;
+
+@block: "AntennaMedium";
+@bold: "AntennaBold";
+
+.drought-container {
+
+  max-width: 620px;
+  margin: auto;
+  text-align: center;
+  font-family: @block;
+
+  .head {
+    font-weight: 600;
+    //font-style: oblique;
+  }
+  .spacing_hack {
+    margin-top: 20px;
+  }
+
+  .title {
+    font-size: 25px;
+    font-weight: 600;
+  }
+  .subtitle {
+    font-style: italic;
+  }
+
+}
+
+.select-class {
+  background-color: @other;
+  width: 200px;
+  height: 25px;
+  font-size: 12px;
+  margin: 2px auto;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.reset-button {
+  background-color: @other;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 400px;
+  height: 30px;
+  margin: 5px auto;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.rain-inches, .rain-percent, .snow-inches, .snow-percent {
+  display: inline-block;
+  background: @df-light-gray;
+  font-weight: 600;
+  width: 100px;
+}
+
+.rain-slider, .snow-slider {
+  .display-flex;
+  font-size: 12px;
+  padding-top: 12px;
+}
+
+.rain-min, .rain-max, .snow-min, .snow-max {
+  display: inline-block;
+  font-size: 14px;
+}
+.rain-min, .snow-min {
+  float: left;
+}
+.rain-max, .snow-max {
+  float: right;
+}
+.rain-text, .snow-text {
+  margin-top: 25px;
+}
+.fa {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.cell {
+  z-index: 0;
+  position: absolute;
+  width: @cellWidth;
+  height: @cellHeight;
+  background: @df-light-gray;
+  transition: background .5s linear, opacity .5s linear;
+
+  .rain-slider & {
+    position: relative;
+    .flex(0.6);
+    height: 18px;
+  }
+
+  .snow-slider & {
+    position: relative;
+    .flex(0.6);
+    height: 18px;
+  }
+
+  &.count-8 { background-color: darken(@other, 80%) }
+  &.count-7 { background-color: darken(@other, 70%) }
+  &.count-6 { background-color: darken(@other, 60%) }
+  &.count-5 { background-color: darken(@other, 50%) }
+  &.count-4 { background-color: darken(@other, 40%) }
+  &.count-3 { background-color: darken(@other, 30%) }
+  &.count-2 { background-color: darken(@other, 20%) }
+  &.count-1 { background-color: darken(@other, 10%) }
+
+  &:hover {
+    background: @df-light-gray;
+    cursor: pointer;
+  }
+
+  &.active {
+    border: 2px solid black;
+  }
+
+}
+
+.color-text {
+  display: none;
+  &.no {
+    background-color: @red;
+  }
+  &.maybe {
+    background-color: @orange;
+  }
+  &.yes {
+    background-color: @yellow;
+  }
+  color: white;
+  &.active {
+    display: block;
+  }
+
+}
+
+.credits, .sources {
+  font-size: 0.8em;
+  text-align: center;
+  padding: 0 15px 8px 15px;
+  max-width: 550px;
+  margin: 20px auto 0px auto;
+
+  @media @tablet {
+    margin-bottom: 0;
+  }
+  .credit-name {
+    font-weight: 700;
+  }
+}
+
+
+footer {
+  background: @df-charcoal;
+  opacity: 0.95;
+  padding: 0 10px;
+  position: relative;
+  z-index: 99;
+  margin-top: 10px;
+
+  @media @tablet {
+    margin-top: 0px;
+  }
+
+  .logo {
+    float: left;
+    margin-right: 10px;
+
+    img {
+      margin-top: 10px;
+      height: 20px;
+    }
+  }
+
+  &::after {
+    clear: both;
+    content: " ";
+    display: block;
+  }
+}

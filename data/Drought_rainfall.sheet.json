@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "city": "San Francisco",
+    "current_rainfall": 10,
+    "normal_rainfall": 50,
+    "inches1": 0,
+    "inches2": 10,
+    "inches3": 20,
+    "inches4": 30,
+    "percent1": 0,
+    "percent2": 0.2,
+    "percent3": 0.4,
+    "percent4": 0.6
+  },
+  {
+    "id": 2,
+    "city": "Los Angeles",
+    "current_rainfall": 5,
+    "normal_rainfall": 10,
+    "inches1": 0,
+    "inches2": 10,
+    "inches3": 20,
+    "inches4": 30,
+    "percent1": 0,
+    "percent2": 1,
+    "percent3": 2,
+    "percent4": 3
+  }
+]
