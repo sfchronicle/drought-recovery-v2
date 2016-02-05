@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="css/slider.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://rawgit.com/rzajac/angularjs-slider/master/dist/rzslider.css"/>
+    <link rel="stylesheet" type="text/css" href="css/rzslider.css"/>
     <%= t.include("partials/_head.html") %>
   </head>
   <body ng-app="drought">
@@ -38,48 +39,41 @@
                 ng-options="row.id as row.city for row in rainData">
         </select>
         <div class="head">How much rainfall will there be in that region through the end of 2016?</div>
-          <div class="sliderExample"><a name="ex3"></a>
-            <strong>Slider - start value 14</strong>
-            <div ui-slider min="0" max="20" ng-model="demoVals.sliderExample3"></div>
-            <input type="text" ng-model="demoVals.sliderExample3" />
-        </div>
-          <div class="rain-slider">
-            <div ng-repeat="item in rain_list" class="cell count-{{item}}" ng-class="{active: activeValue == item}" ng-click="setActive(item)"></div>
-          </div>
-          <div class="axis-label">
-            <div class="rain-min">0 in/mo<i class="fa fa-long-arrow-right"></i></div>
-            <div class="rain-max"><i class="fa fa-long-arrow-left"></i>30 in/mo</div>
-          </div>
-          <div class="rain-text">
-            <div class="rain-inches", value={{activeInches}}>{{activeInches}}</div>
-             inches of rain per month through the end of the year translates into
-            <div class="rain-percent", value={{activePercent*100}}>{{activePercent*100}}</div>
-             % of normal.
-           </div>
+        <rzslider rz-slider-model="rain_slider.value"
+                  rz-slider-options="rain_slider.options"
+                  style="position:relative"
+                  ng-click="round_rain_numbers(rain_slider.value)"></rzslider>
+        <div class="avg_rain" style="position: relative; left: {{(rainRow.normal_rainfall+1)*620/63}}px"></div>
+        <div class="avg_rain_label" style="position: relative; left: {{(rainRow.normal_rainfall+1)*620/63-38}}px">Normal rainfall: {{rainRow.normal_rainfall}} in</div>
+
+        <div class="rain-text">
+          <div class="rain-inches">{{rain_slider.value}}</div>
+           inches of rain is
+          <div class="rain-percent">{{rain_percent}}</div>
+           % of normal.
+         </div>
 
         <div class="head">How much snow will there be statewide by the end of 2016?</div>
-          <div class="snow-slider">
-            <div ng-repeat="snow_item in snow_list" class="cell count-{{snow_item}}" ng-class="{active: activeSnowValue == snow_item}" ng-click="setSnowActive(snow_item)"></div>
-          </div>
-          <div class="axis-label">
-            <div class="snow-min">10 in<i class="fa fa-long-arrow-right"></i></div>
-            <div class="snow-max"><i class="fa fa-long-arrow-left"></i>40 in</div>
-          </div>
-          <div class="snow-text">
-            <div class="snow-inches", value={{activeSnowInches}}>{{activeSnowInches}}</div>
-             inches of snow through the end of the year translates into
-            <div class="snow-percent", value={{activeSnowPercent*100}}>{{activeSnowPercent*100}}</div>
-             % of normal.
-           </div>
+        <rzslider rz-slider-model="snow_slider.value"
+                  rz-slider-options="snow_slider.options"></rzslider>
+        <div class="avg_snow" style="position: relative; left: {{(snowData[0].normal_inches+1)*620/63}}px"></div>
+        <div class="avg_snow_label" style="position: relative; left: {{(snowData[0].normal_inches+1)*620/63-38}}px">Normal snowfall: {{snowData[0].normal_inches}} in</div>
+
+        <div class="snow-text">
+          <div class="snow-inches">{{snow_slider.value}}</div>
+           inches of snow is
+          <div class="snow-percent">{{snow_slider.value/snowData[0].normal_inches*100}}</div>
+           % of normal.
+         </div>
 
         <div class="answer">
           <div class="thin-div">
             <div class="center long">SO... Are we out of the drought?</div>
           </div>
           <div class="spacing_hack"></div>
-          <div class="color-text no" ng-class="{active: droughtValue == 1}">No!</div>
-          <div class="color-text maybe" ng-class="{active: droughtValue == 2}">Maybe!</div>
-          <div class="color-text yes" ng-class="{active: droughtValue == 3}">Yes!</div>
+          <div class="color-text no" ng-class="{active: rain_slider.value/rainRow.normal_rainfall < 1.5 && snow_slider.value/snowData[0].normal_inches < 1.5}">No!</div>
+          <div class="color-text maybe" ng-class="{active: (rain_slider.value/rainRow.normal_rainfall > 1.5 || snow_slider.value/snowData[0].normal_inches > 1.5) && !(rain_slider.value/rainRow.normal_rainfall > 1.5 && snow_slider.value/snowData[0].normal_inches > 1.5)}">Maybe!</div>
+          <div class="color-text yes" ng-class="{active: rain_slider.value/rainRow.normal_rainfall > 1.5 && snow_slider.value/snowData[0].normal_inches > 1.5}">Yes!</div>
           <div class="answer-text">This is some text where we explain about how we have done the computations and how weather people decided about certain percentiles determining that these percentiles mean this or that.</div>
         </div>
 
@@ -103,7 +97,6 @@
       var rainData = <%= JSON.stringify(json.Drought_rainfall) %>
       var snowData = <%= JSON.stringify(json.Drought_snow) %>
     </script>
-
 
     <script src="app.js" async></script>
     <%= t.include("partials/_foot.html") %>

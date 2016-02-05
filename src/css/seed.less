@@ -18,15 +18,54 @@
 @block: "AntennaMedium";
 @bold: "AntennaBold";
 
+// slider styling changes
+rzslider .rz-pointer {
+  background-color: @other !important;
+  &:after {
+    background-color: darken(@other,30%) !important;
+  }
+}
+rzslider {
+  margin-bottom:0 !important;
+  z-index:0 !important;
+}
+.rz-limit {
+  display: none !important;
+}
+
+//
+.avg_rain, .avg_snow {
+  width: 10px;
+  height: 10px;
+//  text-align: center;
+  cursor: pointer;
+  background: darken(@other,35%);
+  border-radius: 50%;
+  position: relative;
+  bottom: 6px;
+}
+.avg_rain_label, .avg_snow_label {
+  padding: 0px;
+  padding-top:10px;
+  text-align: left;
+  font-size: 14px;
+  color: darken(@other,35%);
+  display: relative;
+}
+
+
 .drought-container {
 
   max-width: 620px;
   margin: auto;
   text-align: center;
   font-family: @block;
+  font-size: 18px;
 
   .head {
     font-weight: 600;
+    padding-top: 10px;
+    padding-bottom: 10px;
     //font-style: oblique;
   }
   .spacing_hack {
@@ -90,6 +129,7 @@
   float: right;
 }
 .rain-text, .snow-text {
+  margin: auto;
   margin-top: 25px;
 }
 .fa {
