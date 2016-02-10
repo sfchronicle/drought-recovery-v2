@@ -6,7 +6,7 @@
 @import "flexbox";
 
 @other: #9F9FBF;
-@red: #A10D2D;
+@red: #C47676;
 @orange: #FF9933;
 @yellow: #DED337;
 
@@ -32,6 +32,7 @@ rzslider {
   .rz-bar {
     background: darken(@other,12%) !important;
   }
+  width: 95% !important;
 }
 
 .rz-limit {
@@ -75,13 +76,17 @@ rzslider {
   font-size: 18px;
 
   .head {
-    font-weight: 600;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    //font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: lighten(@other,15%);
     //font-style: oblique;
   }
   .spacing_hack {
     margin-top: 20px;
+    @media @mobile {
+      margin-top: 10px;
+    }
   }
 
   .title {
@@ -89,21 +94,28 @@ rzslider {
     font-weight: 600;
     margin-top: -40px;
     color: white;
+    @media @mobile {
+      font-size: 22px;
+    }
   }
   .subtitle {
     font-style: italic;
   }
   .chatter {
     margin-top: 10px;
+    @media @mobile {
+      padding: 0 7px;
+      margin-top: 12px;
+    }
   }
 
 }
 
 .select-class {
-  background-color: @other;
+  background-color: darken(@other,10%);
   width: 200px;
   height: 25px;
-  font-size: 12px;
+  font-size: 14px;
   margin: 2px auto;
 
   &:hover {
@@ -124,9 +136,13 @@ rzslider {
 }
 .rain-inches, .rain-percent, .snow-inches, .snow-percent {
   display: inline-block;
-  background: @df-light-gray;
+  background: darken(@other,30%);
   font-weight: 600;
   width: 100px;
+  color: white;
+  @media @mobile {
+    width: 50px;
+  }
 }
 
 .rain-slider, .snow-slider {
@@ -148,26 +164,47 @@ rzslider {
 .rain-text, .snow-text {
   margin: auto;
   margin-top: 10px;
+  @media @mobile {
+    display: none;
+  }
+}
+.rain-text-mobile, .snow-text-mobile {
+  margin: auto;
+  margin-top: 5px;
+  display: none;
+  @media @mobile {
+    display: block;
+  }
 }
 .fa {
   padding-left: 10px;
   padding-right: 10px;
 }
 
+.avg_rain_label, .current_rain_label, .avg_snow_label, .current_snow_label {
+  position: relative;
+  width: 200px;
+}
+
 .color-text {
   display: none;
+  border-radius: 5px;
+  padding: 5px;
   &.no {
-    background-color: @red;
+    background-color: darken(@red, 5%);
   }
   &.maybe {
-    background-color: @orange;
+    background-color: lighten(@orange, 10%);
   }
   &.yes {
-    background-color: @yellow;
+    background-color: lighten(@yellow, 10%);
   }
-  color: white;
+  //color: white;
   &.active {
     display: block;
+  }
+  @media @mobile {
+    margin: 0px 7px;
   }
 
 }

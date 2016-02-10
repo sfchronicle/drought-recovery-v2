@@ -20,11 +20,10 @@ app.controller("DroughtController", ["$scope", "$filter", function($scope, $filt
   var snow_ceil = 60;
 
   // window size
-  $scope.win_width = 620; //document.getElementById("title").clientWidth;
-  //console.log($scope.win_width);
+  $scope.win_width = document.getElementById("head").scrollWidth;
 
   // initialize the chosen city & corresponding data
-  $scope.selectedCity = 1;
+  $scope.selectedCity = 4;
   var cityIDX = $scope.selectedCity-1;
   $scope.rainRow = rainData[cityIDX];
 
