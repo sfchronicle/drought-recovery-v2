@@ -19,6 +19,10 @@ app.controller("DroughtController", ["$scope", "$filter", function($scope, $filt
   var snow_floor = 0;
   var snow_ceil = 60;
 
+  // window size
+  $scope.win_width = 620; //document.getElementById("title").clientWidth;
+  //console.log($scope.win_width);
+
   // initialize the chosen city & corresponding data
   $scope.selectedCity = 1;
   var cityIDX = $scope.selectedCity-1;
@@ -30,6 +34,9 @@ app.controller("DroughtController", ["$scope", "$filter", function($scope, $filt
     options: {
       floor: rain_floor,
       ceil: rain_ceil,
+      onChange: function() {
+        $scope.rain_percent = Math.round($scope.rain_slider.value/$scope.rainRow.normal_rainfall*100);
+      },
     }
   };
   $scope.rain_percent = Math.round($scope.rainRow.current_rainfall/$scope.rainRow.normal_rainfall*100);
@@ -39,17 +46,24 @@ app.controller("DroughtController", ["$scope", "$filter", function($scope, $filt
     value: $scope.snowData[0].current_inches,
     options: {
       floor: snow_floor,
-      ceil: snow_ceil
+      ceil: snow_ceil,
+      onChange: function() {
+        $scope.snow_percent = Math.round($scope.snow_slider.value/snowData[0].normal_inches*100);
+      },
     }
   };
+  $scope.snow_percent = Math.round($scope.snowData[0].current_inches/snowData[0].normal_inches*100);
 
-  $scope.round_rain_numbers = function (slider_val) {
-    $scope.rain_percent = Math.round(slider_val/$scope.rainRow.normal_rainfall*100);
-    console.log($scope.rain_percent);
+  // automatically scroll the page
+  $scope.set_page = function () {
+    window.location = "#drought";
   }
 
-
+  // reset operation is done when user changes city
   $scope.reset = function () {
+
+    window.location = "#drought";
+
     // reset city and corresponding data
     cityIDX = $scope.selectedCity-1;
     $scope.rainRow = rainData[cityIDX];
@@ -60,17 +74,26 @@ app.controller("DroughtController", ["$scope", "$filter", function($scope, $filt
       options: {
         floor: rain_floor,
         ceil: rain_ceil,
+        onChange: function() {
+          $scope.rain_percent = Math.round($scope.rain_slider.value/$scope.rainRow.normal_rainfall*100);
+        },
       }
     };
     $scope.rain_percent = Math.round($scope.rainRow.current_rainfall/$scope.rainRow.normal_rainfall*100);
+
     // snow slider default setup
     $scope.snow_slider = {
       value: $scope.snowData[0].current_inches,
       options: {
         floor: snow_floor,
-        ceil: snow_ceil
+        ceil: snow_ceil,
+        onChange: function() {
+          $scope.snow_percent = Math.round($scope.snow_slider.value/snowData[0].normal_inches*100);
+        },
       }
     };
+    $scope.snow_percent = Math.round($scope.snowData[0].current_inches/snowData[0].normal_inches*100);
+
   }
 
 }]);

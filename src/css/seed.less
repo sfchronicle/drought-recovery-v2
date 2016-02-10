@@ -24,17 +24,24 @@ rzslider .rz-pointer {
   &:after {
     background-color: darken(@other,30%) !important;
   }
+  //border-radius: 2px !important;
 }
 rzslider {
   margin-bottom:0 !important;
   z-index:0 !important;
+  .rz-bar {
+    background: darken(@other,12%) !important;
+  }
 }
+
 .rz-limit {
-  display: none !important;
+  text-align: left !important;
+  left: 0;
+  //display: none !important;
 }
 
 //
-.avg_rain, .avg_snow {
+.avg_rain, .avg_snow, .current_rain, .current_snow {
   width: 10px;
   height: 10px;
 //  text-align: center;
@@ -44,7 +51,7 @@ rzslider {
   position: relative;
   bottom: 6px;
 }
-.avg_rain_label, .avg_snow_label {
+.avg_rain_label, .avg_snow_label, .current_rain_label, .current_snow_label {
   padding: 0px;
   padding-top:10px;
   text-align: left;
@@ -52,7 +59,12 @@ rzslider {
   color: darken(@other,35%);
   display: relative;
 }
-
+.current_rain, .current_snow {
+  margin-top: -40px;
+}
+.current_rain_label, .current_snow_label {
+  margin-top: 17px;
+}
 
 .drought-container {
 
@@ -75,9 +87,14 @@ rzslider {
   .title {
     font-size: 25px;
     font-weight: 600;
+    margin-top: -40px;
+    color: white;
   }
   .subtitle {
     font-style: italic;
+  }
+  .chatter {
+    margin-top: 10px;
   }
 
 }
@@ -130,51 +147,11 @@ rzslider {
 }
 .rain-text, .snow-text {
   margin: auto;
-  margin-top: 25px;
+  margin-top: 10px;
 }
 .fa {
   padding-left: 10px;
   padding-right: 10px;
-}
-
-.cell {
-  z-index: 0;
-  position: absolute;
-  width: @cellWidth;
-  height: @cellHeight;
-  background: @df-light-gray;
-  transition: background .5s linear, opacity .5s linear;
-
-  .rain-slider & {
-    position: relative;
-    .flex(0.6);
-    height: 18px;
-  }
-
-  .snow-slider & {
-    position: relative;
-    .flex(0.6);
-    height: 18px;
-  }
-
-  &.count-8 { background-color: darken(@other, 80%) }
-  &.count-7 { background-color: darken(@other, 70%) }
-  &.count-6 { background-color: darken(@other, 60%) }
-  &.count-5 { background-color: darken(@other, 50%) }
-  &.count-4 { background-color: darken(@other, 40%) }
-  &.count-3 { background-color: darken(@other, 30%) }
-  &.count-2 { background-color: darken(@other, 20%) }
-  &.count-1 { background-color: darken(@other, 10%) }
-
-  &:hover {
-    background: @df-light-gray;
-    cursor: pointer;
-  }
-
-  &.active {
-    border: 2px solid black;
-  }
-
 }
 
 .color-text {
