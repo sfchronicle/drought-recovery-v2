@@ -31,10 +31,10 @@
                   rz-slider-options="rain_slider.options"
                   style="position:relative"
                   ng-click="round_rain_numbers(rain_slider.value); set_page()"></rzslider>
-        <div class="avg_rain" style="left: {{(rainRow.normal_rainfall-1)*(0.95*win_width-32)/60 + 16+0.025*win_width}}px"></div>
-        <div class="avg_rain_label" style="left: {{(rainRow.normal_rainfall)*(0.95*win_width-32)/60 - 22}}px">Normal rainfall: {{rainRow.normal_rainfall}} in</div>
-        <div class="current_rain" style="left: {{(rainRow.current_rainfall-1)*(0.95*win_width-32)/60 + 16+0.025*win_width}}px"></div>
-        <div class="current_rain_label" style="left: {{(rainRow.current_rainfall)*(0.95*win_width-32)/60 - 22}}px">Current rainfall: {{rainRow.current_rainfall}} in</div>
+        <div class="avg_rain" style="left: {{(rainRow.normal_rainfall+add_factor)*(0.95*win_width-32)/60 + edge_width}}px"></div>
+        <div class="avg_rain_label" style="left: {{(rainRow.normal_rainfall+add_factor)*(0.95*win_width-32)/60 - edge_width/2}}px">Normal rainfall: {{rainRow.normal_rainfall}} in</div>
+        <div class="current_rain" style="left: {{(rainRow.current_rainfall+add_factor)*(0.95*win_width-32)/60 + edge_width}}px"></div>
+        <div class="current_rain_label" style="left: {{(rainRow.current_rainfall+add_factor)*(0.95*win_width-32)/60 - edge_width/2}}px">Current rainfall: {{rainRow.current_rainfall}} in</div>
 
         <div class="rain-text">
           <div class="rain-inches">{{rain_slider.value}}</div>
@@ -54,10 +54,10 @@
         <rzslider rz-slider-model="snow_slider.value"
                   rz-slider-options="snow_slider.options"
                   ng-click="set_page()"></rzslider>
-        <div class="avg_snow" style="position: relative; left: {{(snowData[0].normal_inches-1)*(0.95*win_width-32)/60+16+0.025*win_width}}px"></div>
-        <div class="avg_snow_label" style="left: {{(snowData[0].normal_inches-1)*(0.95*win_width-32)/60-22}}px">Normal snowfall: {{snowData[0].normal_inches}} in</div>
-        <div class="current_snow" style="position: relative; left: {{(snowData[0].current_inches-1)*(0.95*win_width-32)/60+16+0.025*win_width}}px"></div>
-        <div class="current_snow_label" style="left: {{(snowData[0].current_inches-1)*(0.95*win_width-32)/60-22}}px">Current snowfall: {{snowData[0].current_inches}} in</div>
+        <div class="avg_snow" style="position: relative; left: {{(snowData[0].normal_inches+add_factor)*(0.95*win_width-32)/60+edge_width}}px"></div>
+        <div class="avg_snow_label" style="left: {{(snowData[0].normal_inches+add_factor)*(0.95*win_width-32)/60-edge_width/2}}px">Normal snowfall: {{snowData[0].normal_inches}} in</div>
+        <div class="current_snow" style="position: relative; left: {{(snowData[0].current_inches+add_factor)*(0.95*win_width-32)/60+edge_width}}px"></div>
+        <div class="current_snow_label" style="left: {{(snowData[0].current_inches+add_factor)*(0.95*win_width-32)/60-edge_width/2}}px">Current snowfall: {{snowData[0].current_inches}} in</div>
 
         <div class="snow-text">
           <div class="snow-inches">{{snow_slider.value}}</div>

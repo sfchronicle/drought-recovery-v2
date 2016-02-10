@@ -21,6 +21,13 @@ app.controller("DroughtController", ["$scope", "$filter", function($scope, $filt
 
   // window size
   $scope.win_width = document.getElementById("head").scrollWidth;
+  if ($scope.win_width < 620) {
+    $scope.edge_width = 16+0.025*$scope.win_width;
+    $scope.add_factor = -1;
+  } else {
+    $scope.edge_width = 0.025*$scope.win_width;
+    $scope.add_factor = 1.2;
+  }
 
   // initialize the chosen city & corresponding data
   $scope.selectedCity = 4;
