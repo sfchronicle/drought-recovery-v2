@@ -1,6 +1,10 @@
 [
   {
-    "current_inches": 12,
-    "normal_inches": 20
+    "current_snowwater": 20,
+    "current_inches": 44,
+    "normal_snowwater": 28,
+    "normal_inches": 63,
+    "goal_snowwater": 42,
+    "goal_inches": 94
   }
 ]

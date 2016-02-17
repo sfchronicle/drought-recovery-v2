@@ -9,12 +9,12 @@
       "path": ""
     }
   },
-  "title": "",
-  "description": "",
-  "url": "",
+  "title": "Drought status",
+  "description": "When will the drought be over? Check out the Chronicle interactive to see.",
+  "url": "http://projects.sfchronicle.com/2016/drought-status/",
   "slug": "",
   "tags": [],
-  "image": "assets/social.jpg",
+  "image": "assets/drought_img.JPG",
   "sheets": ["1kLLSkDdJNu1YrcT4Rp6s3jCV-6sSrIrY_9QPHkZAvaE"],
   "production": false,
   "embedded": true

@@ -6,6 +6,7 @@
 @import "flexbox";
 
 @other: #9F9FBF;
+@highlight: #6B6BC7;//#BF9FAF;
 @red: #C47676;
 @orange: #FF9933;
 @yellow: #DED337;
@@ -23,6 +24,9 @@ rzslider .rz-pointer {
   background-color: @other !important;
   &:after {
     background-color: darken(@other,30%) !important;
+  }
+  &.rz-active {
+    background-color: @highlight !important;
   }
   //border-radius: 2px !important;
 }
@@ -77,9 +81,12 @@ rzslider {
 
   .head {
     //font-weight: 600;
-    margin-top: 10px;
+    margin-top: 25px;
     margin-bottom: 10px;
     background-color: lighten(@other,15%);
+    @media @mobile {
+      margin-top: 20px;
+    }
     //font-style: oblique;
   }
   .spacing_hack {
@@ -90,12 +97,13 @@ rzslider {
   }
 
   .title {
-    font-size: 25px;
+    font-size: 32px;
     font-weight: 600;
-    margin-top: -40px;
+    margin-top: -45px;
     color: white;
     @media @mobile {
       font-size: 18px;
+      margin-top: -35px;
     }
   }
   .subtitle {
@@ -105,7 +113,7 @@ rzslider {
     margin-top: 10px;
     @media @mobile {
       padding: 0 7px;
-      margin-top: 14px;
+      margin-top: 10px;
     }
   }
 
@@ -185,12 +193,16 @@ rzslider {
 .avg_rain_label, .current_rain_label, .avg_snow_label, .current_snow_label {
   position: relative;
   width: 200px;
+  @media @mobile {
+    width: 180px;
+  }
 }
 
 .color-text {
   display: none;
   border-radius: 5px;
   padding: 5px;
+  margin-bottom: 25px;
   &.no {
     background-color: darken(@red, 5%);
   }
@@ -208,6 +220,27 @@ rzslider {
     margin: 0px 7px;
   }
 
+}
+
+.methodology {
+  display: inline-block;
+  width: 100%;
+  text-align: justify;
+  @media @mobile {
+    max-width: 95%;
+  }
+
+}
+.methodology-title {
+  font-weight:600;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.disclaimer {
+  font-size: 15px;
+  margin: 10px 0;
+  margin-top: 15px;
 }
 
 .credits, .sources {
@@ -252,5 +285,26 @@ footer {
     clear: both;
     content: " ";
     display: block;
+  }
+}
+
+.share-button {
+  display: inline-block !important;
+  margin-top: 10px;
+  @media @mobile {
+    margin-top: 20px;
+  }
+
+  &.sharer-0 label {
+    color: @df-dark-gray !important;
+    background: @df-light-gray !important;
+    padding: 6px 10px !important;
+    border-radius: 0 !important;
+    margin-left: 2px;
+
+    &:hover {
+      background: @df-border-gray !important;
+      color: @df-charcoal !important;
+    }
   }
 }

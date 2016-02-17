@@ -2,8 +2,22 @@
 // var track = require("./lib/tracking");
 require("angular/angular.min");
 require("component-responsive-frame/child");
-require("angular-ui-bootstrap")
-require("angularjs-slider")
+require("angular-ui-bootstrap");
+require("angularjs-slider");
+
+var Share = require("share");
+
+new Share(".share-button", {
+  description: "Is the drought over? Click to check it out.",
+    ui: {
+    flyout: "top center"
+  },
+  networks: {
+    email: {
+      description: "Is the drought over? Click to check it out." + window.location
+    }
+  }
+});
 
 var app = angular.module("drought", ["rzModule","ui.bootstrap"]);
 
@@ -17,16 +31,18 @@ app.controller("DroughtController", ["$scope", "$filter", function($scope, $filt
   var rain_floor = 0;
   var rain_ceil = 60;
   var snow_floor = 0;
-  var snow_ceil = 60;
+  var snow_ceil = 120;
 
   // window size
   $scope.win_width = document.getElementById("head").scrollWidth;
   if ($scope.win_width < 620) {
     $scope.edge_width = 16+0.025*$scope.win_width;
     $scope.add_factor = -1;
+    $scope.snow_add_factor = -2;
   } else {
     $scope.edge_width = 0.025*$scope.win_width;
     $scope.add_factor = 1.2;
+    $scope.snow_add_factor = 2.2;
   }
 
   // initialize the chosen city & corresponding data

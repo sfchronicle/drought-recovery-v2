@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://rawgit.com/rzajac/angularjs-slider/master/dist/rzslider.css"/>
     <%= t.include("partials/_head.html") %>
+    <%= t.include("partials/_analytics_hearst.html") %>
+
+    <script src="app.js" async></script>
+
   </head>
   <body ng-app="drought">
 
@@ -18,7 +22,8 @@
 
         <img src="./assets/drought_img.JPG"></img>
         <div class="title" id="title">When will the drought be over?</div>
-        <div class="chatter">We've had a lot of rain recently and everyone is ready to go back to watering their lawns. When can we safely revert to wasting water? Choose a city and move the sliders to see just how much more rain and snow we need. </div>
+        <a class="share-button"></a>
+        <div class="chatter">We’ve had a lot of wet weather recently, but it’s still <a href="http://www.sfchronicle.com/bayarea/article/How-much-El-Ni-o-rain-needed-to-end-drought-6754540.php" target="_blank">too soon</a> to start wasting water. Move the sliders below to see what combination of rain and snow is required for California to see drought relief.</div>
 
         <div class="head" id="drought">Choose a city:</div>
         <select class="select-class"
@@ -26,61 +31,67 @@
                 ng-change=reset()
                 ng-options="row.id as row.city for row in rainData">
         </select>
-        <div class="head" id="head">Choose rainfall level:</div>
+        <div class="head" id="head">Choose rain level for this season:</div>
         <rzslider rz-slider-model="rain_slider.value"
                   rz-slider-options="rain_slider.options"
                   style="position:relative"
                   ng-click="round_rain_numbers(rain_slider.value); set_page()"></rzslider>
         <div class="avg_rain" style="left: {{(rainRow.normal_rainfall+add_factor)*(0.95*win_width-32)/60 + edge_width}}px"></div>
-        <div class="avg_rain_label" style="left: {{(rainRow.normal_rainfall+add_factor)*(0.95*win_width-32)/60 - edge_width/2}}px">Normal rainfall: {{rainRow.normal_rainfall}} in</div>
+        <div class="avg_rain_label" style="left: {{(rainRow.normal_rainfall+add_factor)*(0.95*win_width-32)/60 - edge_width/2-12}}px">Average rain: {{rainRow.normal_rainfall}} inches</div>
         <div class="current_rain" style="left: {{(rainRow.current_rainfall+add_factor)*(0.95*win_width-32)/60 + edge_width}}px"></div>
-        <div class="current_rain_label" style="left: {{(rainRow.current_rainfall+add_factor)*(0.95*win_width-32)/60 - edge_width/2}}px">Current rainfall: {{rainRow.current_rainfall}} in</div>
+        <div class="current_rain_label" style="left: {{(rainRow.current_rainfall+add_factor)*(0.95*win_width-32)/60 - edge_width/2}}px">Current rain: {{rainRow.current_rainfall}} inches</div>
 
         <div class="rain-text">
           <div class="rain-inches">{{rain_slider.value}}</div>
            inches of rain is
           <div class="rain-percent">{{rain_percent}}</div>
-           % of normal.
+           % of average.
         </div>
 
          <div class="rain-text-mobile">
            <div class="rain-inches">{{rain_slider.value}}</div>
-            in of rain is
+            in. of rain is
            <div class="rain-percent">{{rain_percent}}</div>
-            % of normal.
+            % of average.
         </div>
 
-        <div class="head">Choose snowfall level:</div>
+        <div class="head">Choose snow level for this season:</div>
         <rzslider rz-slider-model="snow_slider.value"
                   rz-slider-options="snow_slider.options"
                   ng-click="set_page()"></rzslider>
-        <div class="avg_snow" style="position: relative; left: {{(snowData[0].normal_inches+add_factor)*(0.95*win_width-32)/60+edge_width}}px"></div>
-        <div class="avg_snow_label" style="left: {{(snowData[0].normal_inches+add_factor)*(0.95*win_width-32)/60-edge_width/2}}px">Normal snowfall: {{snowData[0].normal_inches}} in</div>
-        <div class="current_snow" style="position: relative; left: {{(snowData[0].current_inches+add_factor)*(0.95*win_width-32)/60+edge_width}}px"></div>
-        <div class="current_snow_label" style="left: {{(snowData[0].current_inches+add_factor)*(0.95*win_width-32)/60-edge_width/2}}px">Current snowfall: {{snowData[0].current_inches}} in</div>
+        <div class="avg_snow" style="position: relative; left: {{(snowData[0].normal_inches+snow_add_factor)*(0.95*win_width-32)/120+edge_width}}px"></div>
+        <div class="avg_snow_label" style="left: {{(snowData[0].normal_inches+snow_add_factor)*(0.95*win_width-32)/120-edge_width/2}}px">Average snow: {{snowData[0].normal_inches}} inches</div>
+        <div class="current_snow" style="position: relative; left: {{(snowData[0].current_inches+snow_add_factor)*(0.95*win_width-32)/120+edge_width}}px"></div>
+        <div class="current_snow_label" style="left: {{(snowData[0].current_inches+snow_add_factor)*(0.95*win_width-32)/120-edge_width/2}}px">Current snow: {{snowData[0].current_inches}} inches</div>
 
         <div class="snow-text">
           <div class="snow-inches">{{snow_slider.value}}</div>
            inches of snow is
           <div class="snow-percent">{{snow_percent}}</div>
-           % of normal.
+           % of average.
          </div>
 
          <div class="snow-text-mobile">
            <div class="snow-inches">{{snow_slider.value}}</div>
-            in of snow is
+            in. of snow is
            <div class="snow-percent">{{snow_percent}}</div>
-            % of normal.
+            % of average.
           </div>
 
         <div class="answer">
           <div class="spacing_hack"></div>
           <div class="color-text no"
-            ng-class="{active: rain_slider.value/rainRow.normal_rainfall < (rainRow.percent_req/100) && snow_slider.value/snowData[0].normal_inches < 1.5}">This is some text about how we're not out of the drought at all. We have a long way to go. None of the conditions are satisfied for us having enough water.</div>
+            ng-class="{active: rain_slider.value/rainRow.normal_rainfall < (rainRow.percent_req/100) && snow_slider.value < snowData[0].goal_inches}">No, the drought is not over! Both rain and snow levels are short of what’s needed for relief.</div>
           <div class="color-text maybe"
-            ng-class="{active: (rain_slider.value/rainRow.normal_rainfall >= (rainRow.percent_req/100) || snow_slider.value/snowData[0].normal_inches >= 1.5) && !(rain_slider.value/rainRow.normal_rainfall >= (rainRow.percent_req/100) && snow_slider.value/snowData[0].normal_inches >= 1.5)}">This is some text about how one or another of the conditions for the drought being over is satisfied. So we would be closer to being out of the drought if we had this much rain and snow.</div>
+            ng-class="{active: (rain_slider.value/rainRow.normal_rainfall >= (rainRow.percent_req/100) || snow_slider.value >= snowData[0].goal_inches) && !(rain_slider.value/rainRow.normal_rainfall >= (rainRow.percent_req/100) && snow_slider.value >= snowData[0].goal_inches)}">Improvement! Either enough rain or snow has fallen to provide significant drought relief. But one may be lagging.</div>
           <div class="color-text yes"
-            ng-class="{active: rain_slider.value/rainRow.normal_rainfall >= (rainRow.percent_req/100) && snow_slider.value/snowData[0].normal_inches >= 1.5}">We are totally 100% out of the drought if we have this much rain and snow. As long as the ground water situation is good too, and we have no way to measure that, so we will just call this good.</div>
+            ng-class="{active: rain_slider.value/rainRow.normal_rainfall >= (rainRow.percent_req/100) && snow_slider.value >= snowData[0].goal_inches}">Yes, a big dent was made in the drought! Both enough rain and snow have fallen to patch deficits and provide relief.</div>
+        </div>
+
+        <div class="methodology"><div class="methodology-title">Methodology:  </div>  The Chronicle’s criteria for drought relief are based on state and federal estimates of how much rain and snow are needed to make up for deficits. The rain calculation is derived from <a href="https://www.climate.gov/sites/default/files/CA_precip_needed_2015_large.png" target="_blank">U.S. Climate Prediction Center figures</a> on what’s required, by region, to move out of the bottom 20th percentile of the five-year precipitation total. The snow calculation is based on the California Department of Water Resources’ estimate of how much water will have to be in the <a href="http://cdec.water.ca.gov/cdecapp/snowapp/sweq.action" target="_blank">Sierra snowpack, measured as a whole</a>, on April 1 to provide drought relief. <a href="http://www.sfchronicle.com/drought/" target="_blank">Visit the Chronicle</a> for more complete drought coverage.
+        </div>
+        <div class="disclaimer">
+        Disclaimer: This tool is intended to give only a general idea of when the drought will subside and is not definitive.
         </div>
 
       </div>
@@ -104,7 +115,6 @@
       var snowData = <%= JSON.stringify(json.Drought_snow) %>
     </script>
 
-    <script src="app.js" async></script>
     <%= t.include("partials/_foot.html") %>
     <%= t.include("partials/_helloSFC.html") %>
   </body>
