@@ -23,7 +23,7 @@
         <img src="./assets/drought_img.JPG"></img>
         <div class="title" id="title">When will the drought be over?</div>
         <a class="share-button"></a>
-        <div class="chatter">We’ve had a lot of wet weather recently, but it’s still <a href="http://www.sfchronicle.com/bayarea/article/How-much-El-Ni-o-rain-needed-to-end-drought-6754540.php" target="_blank">too soon</a> to start wasting water. Move the sliders below to see what combination of rain and snow is required for California to see drought relief.</div>
+        <div class="chatter">We’ve had some wet weather this winter, but it’s still <a href="http://www.sfchronicle.com/bayarea/article/How-much-El-Ni-o-rain-needed-to-end-drought-6754540.php" target="_blank">too soon</a> to start wasting water. Move the sliders below to see what combination of rain and snow is needed for California to see drought relief.</div>
 
         <div class="head" id="drought">Choose a city:</div>
         <select class="select-class"
@@ -31,7 +31,8 @@
                 ng-change=reset()
                 ng-options="row.id as row.city for row in rainData">
         </select>
-        <div class="head" id="head">Choose rain level for this season:</div>
+        <div class="head" id="head">Choose city's rain level for the season:</div>
+        <div class="rain-text2">Remember, a light storm might bring a quarter inch of rain while the bigger ones can bring a few inches.</div>
         <rzslider rz-slider-model="rain_slider.value"
                   rz-slider-options="rain_slider.options"
                   style="position:relative"
@@ -55,7 +56,9 @@
             % of average.
         </div>
 
-        <div class="head">Choose snow level for this season:</div>
+        <div class="head">Choose Sierra snow level for the season:</div>
+        <div class="snow-text2">A winter storm often brings several inches of snow to the mountains, sometimes several feet. Snow is important because it provides much of the state’s water supply.</div>
+        <div class="snow-text2-mobile">A winter storm often brings several inches of snow to the mountains, sometimes several feet.</div>
         <rzslider rz-slider-model="snow_slider.value"
                   rz-slider-options="snow_slider.options"
                   ng-click="set_page()"></rzslider>
@@ -81,17 +84,14 @@
         <div class="answer">
           <div class="spacing_hack"></div>
           <div class="color-text no"
-            ng-class="{active: rain_slider.value/rainRow.normal_rainfall < (rainRow.percent_req/100) && snow_slider.value < snowData[0].goal_inches}">No, the drought is not over! Both rain and snow levels are short of what’s needed for relief.</div>
+            ng-class="{active: rain_slider.value/rainRow.normal_rainfall < (rainRow.percent_req/100) && snow_slider.value < snowData[0].goal_inches}">No, the drought is not over! Both rain and snow are short of what’s needed for relief.</div>
           <div class="color-text maybe"
             ng-class="{active: (rain_slider.value/rainRow.normal_rainfall >= (rainRow.percent_req/100) || snow_slider.value >= snowData[0].goal_inches) && !(rain_slider.value/rainRow.normal_rainfall >= (rainRow.percent_req/100) && snow_slider.value >= snowData[0].goal_inches)}">Improvement! Either enough rain or snow has fallen to provide significant drought relief. But one may be lagging.</div>
           <div class="color-text yes"
             ng-class="{active: rain_slider.value/rainRow.normal_rainfall >= (rainRow.percent_req/100) && snow_slider.value >= snowData[0].goal_inches}">Yes, a big dent was made in the drought! Both enough rain and snow have fallen to patch deficits and provide relief.</div>
         </div>
 
-        <div class="methodology"><div class="methodology-title">Methodology:  </div>  The Chronicle’s criteria for drought relief are based on state and federal estimates of how much rain and snow are needed to make up for deficits. The rain calculation is derived from <a href="https://www.climate.gov/sites/default/files/CA_precip_needed_2015_large.png" target="_blank">U.S. Climate Prediction Center figures</a> on what’s required, by region, to move out of the bottom 20th percentile of the five-year precipitation total. The snow calculation is based on the California Department of Water Resources’ estimate of how much water will have to be in the <a href="http://cdec.water.ca.gov/cdecapp/snowapp/sweq.action" target="_blank">Sierra snowpack, measured as a whole</a>, on April 1 to provide drought relief. <a href="http://www.sfchronicle.com/drought/" target="_blank">Visit the Chronicle</a> for more complete drought coverage.
-        </div>
-        <div class="disclaimer">
-        Disclaimer: This tool is intended to give only a general idea of when the drought will subside and is not definitive.
+        <div class="methodology"><div class="methodology-title">Methodology:  </div>  The Chronicle’s criteria for drought relief are based on state and federal estimates of how much rain and snow are needed to make up for recent deficits. The rain calculation is derived from <a href="https://www.climate.gov/sites/default/files/CA_precip_needed_2015_large.png" target="_blank">U.S. Climate Prediction Center figures</a> on what’s required, by region, to move out of the bottom 20th percentile of the five-year precipitation total. The snow calculation is based on the California Department of Water Resources’ estimate of how much water will have to be in the <a href="http://cdec.water.ca.gov/cdecapp/snowapp/sweq.action" target="_blank">Sierra snowpack, averaged across 96 weather stations</a>, on April 1, to provide drought relief. This tool is intended to give only a general idea of when the drought will subside and is not definitive. <a href="http://www.sfchronicle.com/drought/" target="_blank">Visit the Chronicle</a> for more complete drought coverage.
         </div>
 
       </div>
