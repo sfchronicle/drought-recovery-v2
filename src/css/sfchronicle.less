@@ -241,3 +241,25 @@ footer.nav-bottom {
     }
   }
 }
+
+//IE Hacks
+
+html[data-browser*='MSIE'] {
+
+  .current_rain_label,
+  .avg_rain_label,
+  .current_rain,
+  .avg_rain,
+  .avg_snow,
+  .avg_snow_label,
+  .current_snow,
+  .current_snow_label
+  {
+    display: none;
+  }
+
+  .rain-text, .snow-text {
+    margin-top: 30px;
+  }
+
+}

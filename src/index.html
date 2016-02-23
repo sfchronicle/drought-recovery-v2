@@ -115,6 +115,11 @@
       var snowData = <%= JSON.stringify(json.Drought_snow) %>
     </script>
 
+    <script>
+      var doc = document.documentElement;
+      doc.setAttribute('data-browser', navigator.userAgent);
+    </script>
+
     <%= t.include("partials/_foot.html") %>
     <%= t.include("partials/_helloSFC.html") %>
   </body>
