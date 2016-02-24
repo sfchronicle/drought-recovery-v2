@@ -21,9 +21,9 @@
         <div class="drought-container">
 
         <img src="./assets/drought_img.jpeg"></img>
-        <div class="title" id="title">When will the drought be over?</div>
+        <div class="title" id="title">When will the drought end?</div>
         <a class="share-button"></a>
-        <div class="chatter">We’ve had some wet weather this winter, but it’s way <a href="http://www.sfchronicle.com/bayarea/article/How-much-El-Ni-o-rain-needed-to-end-drought-6754540.php" target="_blank">too soon</a> to stop conserving water. Move the sliders below to see what combination of rain and snow is needed for California to see drought relief.</div>
+        <div class="chatter">We’ve had some wet weather this winter, but it’s much <a href="http://www.sfchronicle.com/bayarea/article/How-much-El-Ni-o-rain-needed-to-end-drought-6754540.php" target="_blank">too soon</a> to stop conserving water. Move the sliders below to see what combination of rain and snow is needed for California to see drought relief.</div>
 
         <div class="head" id="drought">Choose a city:</div>
         <select class="select-class"
@@ -91,7 +91,7 @@
             ng-class="{active: rain_slider.value/rainRow.normal_rainfall >= (rainRow.percent_req/100) && snow_slider.value >= snowData[0].goal_inches}">Yes, a big dent was made in the drought! Both enough rain and snow have fallen to patch deficits and provide relief.</div>
         </div>
 
-        <div class="methodology"><div class="methodology-title">Methodology:  </div>  The Chronicle’s criteria for drought relief are based on state and federal estimates of how much rain and snow are needed to make up for recent deficits. The rain calculation is derived from <a href="https://www.climate.gov/sites/default/files/CA_precip_needed_2015_large.png" target="_blank">U.S. Climate Prediction Center figures</a> on what’s required, by region, to move out of the bottom 20th percentile of the five-year precipitation total. The snow calculation is based on the California Department of Water Resources’ estimate of how much water will have to be in the <a href="http://cdec.water.ca.gov/cdecapp/snowapp/sweq.action" target="_blank">Sierra snowpack, averaged across 96 weather stations</a>, on April 1, to provide drought relief. This tool is intended to give only a general idea of when the drought will subside and is not definitive. <a href="http://www.sfchronicle.com/drought/" target="_blank">Visit the Chronicle</a> for more complete drought coverage.
+        <div class="methodology"><div class="methodology-title">Methodology:  </div>  The Chronicle’s criteria for drought relief are based on state and federal estimates of how much rain and snow are needed to make up for recent deficits. The rain calculation is derived from <a href="https://www.climate.gov/sites/default/files/CA_precip_needed_2015_large.png" target="_blank">U.S. Climate Prediction Center figures</a> on what’s required, by region, to move out of the bottom 20th percentile of the five-year precipitation total. The snow calculation is based on the California Department of Water Resources’ estimate of how much water will have to be in the <a href="http://cdec.water.ca.gov/cdecapp/snowapp/sweq.action" target="_blank">Sierra snowpack, averaged across 96 weather stations</a>, on April 1, to provide drought relief. This tool is intended to give only a general idea of when the drought will subside and is not definitive. <a href="http://www.sfchronicle.com/drought/" target="_blank">Check out SFChronicle.com's Running Dry project</a> for complete drought coverage.
         </div>
 
       </div>
