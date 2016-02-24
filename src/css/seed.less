@@ -10,6 +10,8 @@
 @red: #C47676;
 @orange: #FF9933;
 @yellow: #DED337;
+@current: darken(#BF9FAF,25%);
+@average: darken(#9FBFAF,25%);
 
 @cellWidth: calc(100% / @columns ~" + .5px");
 @cellHeight: calc(100% / @rows ~" + .5px");
@@ -56,19 +58,58 @@ rzslider {
   position: relative;
   bottom: 7px;
 }
-.avg_rain_label, .avg_snow_label, .current_rain_label, .current_snow_label {
+.avg_rain_label, .avg_snow_label, .current_rain_label, .current_snow_label, .avg_rain_label_mobile, .avg_snow_label_mobile, .current_rain_label_mobile, .current_snow_label_mobile {
   padding: 0px;
   padding-top:10px;
   text-align: left;
   font-size: 14px;
-  color: darken(@other,35%);
+  //color: darken(@other,35%);
   display: relative;
+}
+.avg_rain_label, .avg_snow_label, .current_rain_label, .current_snow_label {
+  @media @mobile {
+    display: none;
+  }
+  @media @tablet {
+    display: none;
+  }
+}
+.avg_rain_label_mobile, .avg_snow_label_mobile, .current_rain_label_mobile, .current_snow_label_mobile {
+  display: none;
+  @media @mobile {
+    display: block;
+    position: relative;
+  }
+  @media @tablet  {
+    display: block;
+    position: relative;
+  }
+}
+.avg_rain, .avg_snow {
+  background: @average !important;
 }
 .current_rain, .current_snow {
   margin-top: -40px;
+  background: @current !important;
 }
-.current_rain_label, .current_snow_label {
+.current_rain_label, .current_snow_label, .current_rain_label_mobile, .current_snow_label_mobile {
   margin-top: 17px;
+}
+.avg_rain_swatch, .avg_snow_swatch, .current_rain_swatch, .current_snow_swatch {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  border-radius: 2px;
+  margin-right: 5px;
+  @media @mobile {
+    margin-right: 3px;
+  }
+}
+.avg_rain_swatch, .avg_snow_swatch {
+  background: @average;
+}
+.current_rain_swatch, .current_snow_swatch {
+  background: @current;
 }
 
 .drought-container {
@@ -159,6 +200,9 @@ rzslider {
   @media @mobile {
     width: 50px;
   }
+  @media @tablet {
+    width: 50px;
+  }
 }
 
 .rain-slider, .snow-slider {
@@ -183,6 +227,9 @@ rzslider {
   @media @mobile {
     display: none;
   }
+  @media @tablet {
+    display: none;
+  }
 }
 
 .rain-text2, .snow-text2, .snow-text2-mobile {
@@ -196,10 +243,18 @@ rzslider {
     font-size: 14px;
     padding: 0 4px;
   }
+  @media @tablet {
+    display: block;
+    font-size: 14px;
+    padding: 0 4px;
+  }
 }
 .snow-text2 {
   display: block;
   @media @mobile {
+    display: none;
+  }
+  @media @tablet {
     display: none;
   }
 }
@@ -212,16 +267,23 @@ rzslider {
     display: block;
     font-size: 14px;
   }
+  @media @tablet {
+    display: block;
+    font-size: 14px;
+  }
 }
 .fa {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-.avg_rain_label, .current_rain_label, .avg_snow_label, .current_snow_label {
+.avg_rain_label, .current_rain_label, .avg_snow_label, .current_snow_label, .avg_rain_label_mobile, .current_rain_label_mobile, .avg_snow_label_mobile, .current_snow_label_mobile {
   position: relative;
   width: 200px;
   @media @mobile {
+    width: 180px;
+  }
+  @media @tablet {
     width: 180px;
   }
 }
@@ -249,6 +311,10 @@ rzslider {
     margin-bottom: 4px;
     font-size: 14px;
   }
+  @media @tablet {
+    margin: 0px 7px;
+    margin-bottom: 4px;
+  }
 
 }
 
@@ -257,6 +323,9 @@ rzslider {
   width: 100%;
   text-align: justify;
   @media @mobile {
+    max-width: 95%;
+  }
+  @media @tablet {
     max-width: 95%;
   }
   font-size: 14.5px;
@@ -280,9 +349,6 @@ rzslider {
   max-width: 550px;
   margin: 20px auto 0px auto;
 
-  @media @tablet {
-    margin-bottom: 0;
-  }
   .credit-name {
     font-weight: 700;
   }
@@ -296,10 +362,6 @@ footer {
   position: relative;
   z-index: 99;
   margin-top: 10px;
-
-  @media @tablet {
-    margin-top: 0px;
-  }
 
   .logo {
     float: left;
@@ -322,6 +384,9 @@ footer {
   display: inline-block !important;
   margin-top: 10px;
   @media @mobile {
+    margin-top: 10px;
+  }
+  @media @tablet {
     margin-top: 10px;
   }
 
