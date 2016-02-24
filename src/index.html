@@ -31,7 +31,7 @@
                 ng-change=reset()
                 ng-options="row.id as row.city for row in rainData">
         </select>
-        <div class="head" id="head">Choose city's rain level for the season:</div>
+        <div class="head" id="head">Choose city's rain total for the season:</div>
         <div class="rain-text2">Remember, a light storm might bring a quarter inch of rain while the bigger ones can bring a few inches.</div>
         <rzslider rz-slider-model="rain_slider.value"
                   rz-slider-options="rain_slider.options"
@@ -56,7 +56,7 @@
             % of average.
         </div>
 
-        <div class="head">Choose Sierra snow level for the season:</div>
+        <div class="head">Choose Sierra snow total for the season:</div>
         <div class="snow-text2">A winter storm often brings several inches of snow to the mountains, sometimes several feet. Snow is important because it provides much of the state’s water supply.</div>
         <div class="snow-text2-mobile">A winter storm brings several inches of snow to the mountains, sometimes several feet.</div>
         <rzslider rz-slider-model="snow_slider.value"
