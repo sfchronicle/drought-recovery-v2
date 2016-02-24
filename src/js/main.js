@@ -8,13 +8,13 @@ require("angularjs-slider");
 var Share = require("share");
 
 new Share(".share-button", {
-  description: "Is the drought over? Click to check it out.",
+  description: "When will the drought end? See how much rain and snow it will take.",
     ui: {
     flyout: "top center"
   },
   networks: {
     email: {
-      description: "Is the drought over? Click to check it out." + window.location
+      description: "When will the drought end? See how much rain and snow it will take." + window.location
     }
   }
 });
