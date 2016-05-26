@@ -3,7 +3,7 @@
   <head>
     <title><%= json.project.title %></title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -20,10 +20,33 @@
       <div ng-controller="DroughtController">
         <div class="drought-container">
 
+        <header>
+          <a class="logo" href="http://www.sfchronicle.com" target="_blank">
+            <img src="./assets/sf_logo_black.png">
+          </a>
+          <a class="mobile-logo" href="http://www.sfchronicle.com" target="_blank">
+            <img src="./assets/sfletter_c_black.png">
+          </a>
+          <div class="special-head">Special report</div>
+        </header>
+        <div class="top divider"></div>
+
         <img src="./assets/drought_img.jpeg"></img>
         <div class="title" id="title">When will the drought end?</div>
-        <a class="share-button"></a>
-        <div class="chatter">We’ve had some wet weather this winter, but it’s much <a href="http://www.sfchronicle.com/bayarea/article/How-much-El-Ni-o-rain-needed-to-end-drought-6754540.php" target="_blank">too soon</a> to stop conserving water. Move the sliders below to see what combination of rain and snow is needed for California to see drought relief.</div>
+
+        <div id="social">
+          <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=http%3A//projects.sfchronicle.com/2016/drought-status/&amp;text=When will the drought end? See how much rain and snow it will take.">
+            <i class="fa fa-twitter"></i>
+          </a>
+          <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fdrought-status%2F', 'facebook-share-dialog', 'width=626,height=436'); return false;">
+              <i class="fa fa-facebook"></i>
+          </a>
+          <a id="mail-icon" href="mailto:?subject=Drought Status | SF Chronicle special report.&body=When will the drought end? See how much rain and snow it will take. http://projects.sfchronicle.com/2016/drought-status/">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+          </a>
+        </div>
+
+        <div class="chatter">We had some wet weather this past winter, but <a href="http://www.sfchronicle.com/bayarea/article/How-much-El-Ni-o-rain-needed-to-end-drought-6754540.php" target="_blank">not enough</a> to make up for the deficits of past years. Move the sliders below to see what combination of rain and snow would have been needed for California to see drought relief this season.</div>
 
         <div class="head" id="drought">Choose a city:</div>
         <select class="select-class"
@@ -42,7 +65,7 @@
         <div class="avg_rain_label_mobile" style="left: {{(rainRow.normal_rainfall+add_factor)*(0.95*win_width-32)/60 - edge_width/2-12}}px"><div class="avg_rain_swatch"></div>Average rain: {{rainRow.normal_rainfall}} in.</div>
         <div class="current_rain" style="left: {{(rainRow.current_rainfall+add_factor)*(0.95*win_width-32)/60 + edge_width}}px"></div>
         <div class="current_rain_label" style="left: {{(rainRow.current_rainfall+add_factor)*(0.95*win_width-32)/60 - edge_width/2}}px"><div class="current_rain_swatch"></div>Current rain: {{rainRow.current_rainfall}} inches</div>
-        <div class="current_rain_label_mobile" style="left: {{(rainRow.current_rainfall+add_factor)*(0.95*win_width-32)/60 - edge_width/2}}px"><div class="current_rain_swatch"></div>Current rain: {{rainRow.current_rainfall}} in.</div>
+        <div class="current_rain_label_mobile" style="left: {{(rainRow.current_rainfall+add_factor)*(0.95*win_width-32)/60 - edge_width/2-12}}px"><div class="current_rain_swatch"></div>Current rain: {{rainRow.current_rainfall}} in.</div>
 
 
         <div class="rain-text">
@@ -66,11 +89,11 @@
                   rz-slider-options="snow_slider.options"
                   ng-click="set_page()"></rzslider>
         <div class="avg_snow" style="position: relative; left: {{(snowData[0].normal_inches+snow_add_factor)*(0.95*win_width-32)/120+edge_width}}px"></div>
-        <div class="avg_snow_label" style="left: {{(snowData[0].normal_inches+snow_add_factor)*(0.95*win_width-32)/120-edge_width/2}}px"><div class="avg_snow_swatch"></div>Average snow: {{snowData[0].normal_inches}} inches</div>
-        <div class="avg_snow_label_mobile" style="left: {{(snowData[0].normal_inches+snow_add_factor)*(0.95*win_width-32)/120-edge_width/2}}px"><div class="avg_snow_swatch"></div>Average snow: {{snowData[0].normal_inches}} in.</div>
+        <div class="avg_snow_label" style="left: {{(snowData[0].normal_inches+snow_add_factor)*(0.95*win_width-32)/120-edge_width/2}}px"><div class="avg_snow_swatch"></div>Average peak snow: {{snowData[0].normal_inches}} inches</div>
+        <div class="avg_snow_label_mobile" style="left: {{(snowData[0].normal_inches+snow_add_factor)*(0.95*win_width-32)/120-2*edge_width/3}}px"><div class="avg_snow_swatch"></div>Average peak snow: {{snowData[0].normal_inches}} in.</div>
         <div class="current_snow" style="position: relative; left: {{(snowData[0].current_inches+snow_add_factor)*(0.95*win_width-32)/120+edge_width}}px"></div>
-        <div class="current_snow_label" style="left: {{(snowData[0].current_inches+snow_add_factor)*(0.95*win_width-32)/120-edge_width/2}}px"><div class="current_snow_swatch"></div>Current snow: {{snowData[0].current_inches}} inches</div>
-        <div class="current_snow_label_mobile" style="left: {{(snowData[0].current_inches+snow_add_factor)*(0.95*win_width-32)/120-edge_width/2}}px"><div class="current_snow_swatch"></div>Current snow: {{snowData[0].current_inches}} in.</div>
+        <div class="current_snow_label" style="left: {{(snowData[0].current_inches+snow_add_factor)*(0.95*win_width-32)/120-edge_width/2}}px"><div class="current_snow_swatch"></div>Peak snow this year: {{snowData[0].current_inches}} inches</div>
+        <div class="current_snow_label_mobile" style="left: {{(snowData[0].current_inches+snow_add_factor)*(0.95*win_width-32)/120-2*edge_width/3}}px"><div class="current_snow_swatch"></div>Peak snow this year: {{snowData[0].current_inches}} in.</div>
 
         <div class="snow-text">
           <div class="snow-inches">{{snow_slider.value}}</div>
@@ -96,14 +119,18 @@
             ng-class="{active: rain_slider.value/rainRow.normal_rainfall >= (rainRow.percent_req/100) && snow_slider.value >= snowData[0].goal_inches}">Yes, a big dent was made in the drought! Both enough rain and snow have fallen to patch deficits and provide relief.</div>
         </div>
 
-        <div class="methodology"><div class="methodology-title">Methodology:  </div>  The Chronicle’s criteria for drought relief are based on state and federal estimates of how much rain and snow are needed to make up for recent deficits. The rain calculation is derived from <a href="https://www.climate.gov/sites/default/files/CA_precip_needed_2015_large.png" target="_blank">U.S. Climate Prediction Center figures</a> on what’s required, by region, to move out of the bottom 20th percentile of the five-year precipitation total. The snow calculation is based on the California Department of Water Resources’ estimate of how much water will have to be in the <a href="http://cdec.water.ca.gov/cdecapp/snowapp/sweq.action" target="_blank">Sierra snowpack, averaged across 96 weather stations</a>, on April 1, to provide drought relief. This tool is intended to give only a general idea of when the drought will subside and is not definitive. <a href="http://www.sfchronicle.com/drought/" target="_blank">Check out SFChronicle.com's Running Dry project</a> for complete drought coverage.
+        <div class="methodology"><div class="methodology-title">Methodology:  </div>  The Chronicle’s criteria for drought relief are based on state and federal estimates of how much rain and snow are needed to make up for recent deficits. The rain calculation is derived from <a href="https://www.climate.gov/sites/default/files/CA_precip_needed_2015_large.png" target="_blank">U.S. Climate Prediction Center figures</a> on what’s required, by region, to move out of the bottom 20th percentile of the five-year precipitation total. The rain season is Oct. 1 through Sept. 30. The snow calculation is based on the California Department of Water Resources’ estimate of how much water will have to be in the <a href="http://cdec.water.ca.gov/cdecapp/snowapp/sweq.action" target="_blank">Sierra snowpack, averaged across 96 weather stations</a>, on April 1, to provide drought relief. Peak snowfall this year occurred on March 31. <a href="http://www.sfchronicle.com/drought/" target="_blank">Check out SFChronicle.com's Running Dry project</a> for complete drought coverage.
         </div>
 
       </div>
     </div>
 
     <div class="credits">
-      Reporting by <span class="credit-name">Kurtis Alexander</span> &bull; Web development by <span class="credit-name">Emma O'Neill</span>
+        <div class="entry">Reporter: Kurtis Alexander  &bull; <a href="mailto:kalexander@sfchronicle.com">kalexander@sfchronicle.com</a>  &bull; <a href = "https://twitter.com/kurtisalexander" target="_blank">@kurtisalexander</a></div>
+        <div class="entry">Developer: Emma O'Neill  &bull; <a href="mailto:eoneill@sfchronicle.com">eoneill@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/emmaruthoneill" target="_blank">@emmaruthoneill</a></div>
+    </div>
+
+    <div class="update-date">Last updated on May 25, 2016
     </div>
 
 

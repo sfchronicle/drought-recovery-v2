@@ -2,7 +2,7 @@
   {
     "id": 1,
     "city": "Redding",
-    "current_rainfall": 30,
+    "current_rainfall": 38,
     "normal_rainfall": 35,
     "percent_req": 148,
     "inches_req": 51
@@ -10,7 +10,7 @@
   {
     "id": 2,
     "city": "Sacramento",
-    "current_rainfall": 15,
+    "current_rainfall": 17,
     "normal_rainfall": 20,
     "percent_req": 148,
     "inches_req": 30
@@ -18,7 +18,7 @@
   {
     "id": 3,
     "city": "Santa Rosa",
-    "current_rainfall": 29,
+    "current_rainfall": 32,
     "normal_rainfall": 36,
     "percent_req": 135,
     "inches_req": 49
@@ -26,7 +26,7 @@
   {
     "id": 4,
     "city": "San Francisco",
-    "current_rainfall": 21,
+    "current_rainfall": 23,
     "normal_rainfall": 24,
     "percent_req": 191,
     "inches_req": 45
@@ -34,7 +34,7 @@
   {
     "id": 5,
     "city": "San Jose",
-    "current_rainfall": 13,
+    "current_rainfall": 15,
     "normal_rainfall": 15,
     "percent_req": 191,
     "inches_req": 28
@@ -42,7 +42,7 @@
   {
     "id": 6,
     "city": "Oakland",
-    "current_rainfall": 15,
+    "current_rainfall": 17,
     "normal_rainfall": 21,
     "percent_req": 191,
     "inches_req": 40
@@ -58,7 +58,7 @@
   {
     "id": 8,
     "city": "Fresno",
-    "current_rainfall": 13,
+    "current_rainfall": 14,
     "normal_rainfall": 12,
     "percent_req": 198,
     "inches_req": 23
@@ -74,7 +74,7 @@
   {
     "id": 10,
     "city": "San Diego",
-    "current_rainfall": 7,
+    "current_rainfall": 8,
     "normal_rainfall": 10,
     "percent_req": 198,
     "inches_req": 20
@@ -82,7 +82,7 @@
   {
     "id": 11,
     "city": "Eureka",
-    "current_rainfall": 42,
+    "current_rainfall": 47,
     "normal_rainfall": 40,
     "percent_req": 135,
     "inches_req": 54

@@ -5,21 +5,110 @@
 @import "fonts";
 @import "flexbox";
 
+@block: "AntennaExtraLight";
+@bold: "AntennaMedium";
+@block-graphics: "AntennaExtraLight";
+@bold-graphics: "AntennaMedium";
+@body: "FarnhamText";
+@body-bold: "FarnhamTextBold";
+@title: "FarnhamDisplayLight";
+@banner: "DispatchLight";
+
 @other: #9F9FBF;
 @highlight: #6B6BC7;//#BF9FAF;
 @red: #C47676;
 @orange: #FF9933;
 @yellow: #DED337;
-@current: darken(#BF9FAF,25%);
-@average: darken(#9FBFAF,25%);
+@current: #D13D59;
+
+@average: #FFCC32;
+@gray: #6C85A5;
+@gray-blue: #6C85A5;
+@dark-gray: #696969;
+@light-gray: #B2B2B2;
+@share-gray: lighten(#4F5C70,10%);
+@back-gray: lighten(#6C85A5,35%);
 
 @cellWidth: calc(100% / @columns ~" + .5px");
 @cellHeight: calc(100% / @rows ~" + .5px");
 @rows: (15 - 1.5) * 2;
 @columns: 30;
 
-@block: "AntennaMedium";
-@bold: "AntennaBold";
+body {
+  font-family: @body !important;
+  max-width: 620px;
+  margin: auto !important;
+}
+
+header {
+  background: lighten(@gray,40%);
+  opacity: 0.95;
+  padding: 0 10px;
+  position: relative;
+  z-index: 99;
+  font-family: @bold-graphics;
+  padding-bottom: 10px;
+
+  .logo {
+    float: left;
+    margin-right: 10px;
+    img {
+      margin-top: 10px;
+      height: 20px;
+    }
+    @media @mobile {
+      display: none;
+    }
+  }
+  .mobile-logo {
+    display: none;
+    @media @mobile {
+      display: inline;
+      float: left;
+    }
+    img {
+      margin-top: 10px;
+      height: 18px;
+    }
+  }
+
+  &::after {
+    clear: both;
+    content: " ";
+    display: block;
+  }
+}
+
+.special-head {
+  color: darken(@gray-blue,30%);
+  text-align: right;
+  font-family: @banner;
+  text-transform: uppercase;
+  width: 200px;
+  float: right;
+  vertical-align: bottom;
+  padding-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.credits {
+  margin: 20px auto;
+  padding: 10px;
+  text-align: center;
+  font-style: italic;
+  background: @back-gray;
+  font-size: 16px;
+  font-family: @body;
+  @media @mobile {
+    font-size: 12px;
+  }
+}
+
+.update-date {
+  text-align: center;
+  font-size: 14px;
+}
 
 // slider styling changes
 rzslider .rz-pointer {
@@ -279,12 +368,23 @@ rzslider {
 
 .avg_rain_label, .current_rain_label, .avg_snow_label, .current_snow_label, .avg_rain_label_mobile, .current_rain_label_mobile, .avg_snow_label_mobile, .current_snow_label_mobile {
   position: relative;
-  width: 200px;
-  @media @mobile {
-    width: 180px;
-  }
+  width: 220px;
   @media @tablet {
-    width: 180px;
+    width: 200px;
+  }
+  @media @mobile {
+    width: 190px;
+  }
+}
+
+.avg_rain_label_mobile {
+  @media @mobile {
+    width: 145px;
+  }
+}
+.current_rain_label_mobile {
+  @media @mobile {
+    width: 135px;
   }
 }
 
@@ -342,18 +442,6 @@ rzslider {
   margin-top: 15px;
 }
 
-.credits, .sources {
-  font-size: 0.8em;
-  text-align: center;
-  padding: 0 15px 8px 15px;
-  max-width: 550px;
-  margin: 20px auto 0px auto;
-
-  .credit-name {
-    font-weight: 700;
-  }
-}
-
 
 footer {
   background: @df-charcoal;
@@ -380,26 +468,18 @@ footer {
   }
 }
 
-.share-button {
-  display: inline-block !important;
-  margin-top: 10px;
-  @media @mobile {
-    margin-top: 10px;
-  }
-  @media @tablet {
-    margin-top: 10px;
-  }
+#social {
+  text-align: center;
+  margin-bottom:10px;
+  margin-top: 15px;
 
-  &.sharer-0 label {
-    color: @df-dark-gray !important;
-    background: @df-light-gray !important;
-    padding: 6px 10px !important;
-    border-radius: 0 !important;
-    margin-left: 2px;
+  a {
+    font-size: 20px;
+    padding: 0 5px;
+    color: @share-gray;
 
     &:hover {
-      background: @df-border-gray !important;
-      color: @df-charcoal !important;
+      color: @light-gray;
     }
   }
 }

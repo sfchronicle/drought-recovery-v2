@@ -25,7 +25,6 @@ app.controller("DroughtController", ["$scope", "$filter", function($scope, $filt
   // all the data
   $scope.rainData = rainData;
   $scope.snowData = snowData;
-  console.log($scope.snowData);
 
   //variables
   var rain_floor = 0;
